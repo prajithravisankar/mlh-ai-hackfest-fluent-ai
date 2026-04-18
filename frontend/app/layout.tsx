@@ -31,14 +31,23 @@ export default function RootLayout({
       <body className="min-h-full flex flex-col bg-background text-foreground">
         <nav className="border-b border-zinc-800 bg-surface">
           <div className="mx-auto flex h-14 max-w-7xl items-center justify-between px-4">
-            <Link href="/" className="text-lg font-bold tracking-tight text-accent-light">
+            <Link
+              href="/"
+              className="text-lg font-bold tracking-tight text-accent-light"
+            >
               FluentAI
             </Link>
             <div className="flex items-center gap-6">
-              <Link href="/roadmap" className="text-sm text-zinc-400 hover:text-foreground transition-colors">
+              <Link
+                href="/roadmap"
+                className="text-sm text-zinc-400 hover:text-foreground transition-colors"
+              >
                 Roadmap
               </Link>
-              <Link href="/profile" className="text-sm text-zinc-400 hover:text-foreground transition-colors">
+              <Link
+                href="/profile"
+                className="text-sm text-zinc-400 hover:text-foreground transition-colors"
+              >
                 Profile
               </Link>
               <div className="flex items-center gap-2 rounded-full bg-surface-light px-3 py-1 text-xs text-zinc-400">

@@ -1,6 +1,11 @@
-const WS_URL = process.env.NEXT_PUBLIC_BACKEND_URL?.replace("http", "ws") || "ws://localhost:8000";
+const WS_URL =
+  process.env.NEXT_PUBLIC_BACKEND_URL?.replace("http", "ws") ||
+  "ws://localhost:8000";
 
-export function connectWebSocket(lessonId: string, onMessage: (data: unknown) => void) {
+export function connectWebSocket(
+  lessonId: string,
+  onMessage: (data: unknown) => void,
+) {
   const ws = new WebSocket(`${WS_URL}/ws/lesson/${lessonId}`);
 
   ws.onopen = () => {

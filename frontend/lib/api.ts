@@ -1,11 +1,15 @@
-const BACKEND_URL = process.env.NEXT_PUBLIC_BACKEND_URL || "http://localhost:8000";
+const BACKEND_URL =
+  process.env.NEXT_PUBLIC_BACKEND_URL || "http://localhost:8000";
 
 export async function fetchHealth() {
   const res = await fetch(`${BACKEND_URL}/api/health`);
   return res.json();
 }
 
-export async function startLesson(userId: string, config: Record<string, unknown>) {
+export async function startLesson(
+  userId: string,
+  config: Record<string, unknown>,
+) {
   // TODO: implement in P04
   return { lesson_id: "" };
 }

@@ -140,43 +140,43 @@
 
 **Goal:** A working voice call between the frontend and ElevenLabs Conversational AI, with tool calls arriving at our backend.
 
-- [ ] ElevenLabs Agent Configuration
-  - [ ] Upload knowledge base files to ElevenLabs agent (grammar_rules, idioms_database, coaching_strategies, evaluation_rubrics)
-  - [ ] Write system prompt for Coach Alex (diagnostic persona): warm, encouraging, asks open-ended questions, never scores during diagnostic
-  - [ ] Configure tool calling on the ElevenLabs agent:
-    - [ ] Define tool: `analyze_speech(transcript: str)` → returns analysis JSON
-    - [ ] Define tool: `get_lesson_context()` → returns lesson objectives
-    - [ ] Define tool: `end_lesson(final_transcript: str)` → triggers report generation
-  - [ ] Set agent settings: server-managed turn detection, 10-min max duration, 10s silence prompt
-  - [ ] Select voice for Coach Alex ("Kore" / warm male or similar)
-  - [ ] Test agent in ElevenLabs playground — have a 2-min conversation and verify tool calls fire
-- [ ] Backend Tool Call Endpoint
-  - [ ] Implement `POST /api/tools/analyze_speech` in `backend/routers/analysis.py`
-    - [ ] Accepts transcript chunk from ElevenLabs tool call
-    - [ ] For now: returns a mock analysis JSON (real Gemini analysis comes in P03)
-    - [ ] Publishes `transcript_chunk` event to the orchestrator
-  - [ ] Implement `POST /api/tools/get_lesson_context` — returns current lesson objectives (mock data for now)
-  - [ ] Implement `POST /api/tools/end_lesson` — triggers lesson end flow
-  - [ ] Test: ElevenLabs agent calls our endpoint and receives a response
-- [ ] Frontend Voice Call Integration
-  - [ ] Implement `components/VoiceCall.tsx` using `@11labs/react` SDK
-    - [ ] Connect to ElevenLabs Conversational AI agent
-    - [ ] Handle microphone permissions
-    - [ ] Show call status (connecting, active, ended)
-    - [ ] Display basic waveform visualization during call
-  - [ ] Create a test page: click "Start Call" → talk to Coach Alex → click "End Call"
-  - [ ] Verify: user speaks → AI responds naturally → tool calls hit our backend
-- [ ] Voice Cloning Pipeline (for "Future You" feature)
-  - [ ] During the voice call, capture raw audio from the user's microphone using Web Audio API
-  - [ ] After diagnostic call ends, send the best 30s audio clip to backend
-  - [ ] Backend: `POST /api/voice/clone` — calls ElevenLabs Instant Voice Clone API to create a voice profile
-  - [ ] Store the cloned voice ID in the user's profile in the database
-  - [ ] Test: complete a diagnostic call → cloned voice ID exists in database
-- [ ] WebSocket Setup
-  - [ ] Implement WebSocket endpoint `ws://localhost:8000/ws/lesson/{lesson_id}` in `main.py`
-  - [ ] Orchestrator publishes events → WebSocket broadcasts to connected frontend clients
-  - [ ] Frontend: `lib/websocket.ts` — connect to WebSocket, parse incoming events
-  - [ ] Test: trigger a mock event in backend → frontend receives it via WebSocket
+- [x] ElevenLabs Agent Configuration
+  - [x] Upload knowledge base files to ElevenLabs agent (grammar_rules, idioms_database, coaching_strategies, evaluation_rubrics)
+  - [x] Write system prompt for Coach Alex (diagnostic persona): warm, encouraging, asks open-ended questions, never scores during diagnostic
+  - [x] Configure tool calling on the ElevenLabs agent:
+    - [x] Define tool: `analyze_speech(transcript: str)` → returns analysis JSON
+    - [x] Define tool: `get_lesson_context()` → returns lesson objectives
+    - [x] Define tool: `end_lesson(final_transcript: str)` → triggers report generation
+  - [x] Set agent settings: server-managed turn detection, 10-min max duration, 10s silence prompt
+  - [x] Select voice for Coach Alex ("Kore" / warm male or similar)
+  - [x] Test agent in ElevenLabs playground — have a 2-min conversation and verify tool calls fire
+- [x] Backend Tool Call Endpoint
+  - [x] Implement `POST /api/tools/analyze_speech` in `backend/routers/analysis.py`
+    - [x] Accepts transcript chunk from ElevenLabs tool call
+    - [x] For now: returns a mock analysis JSON (real Gemini analysis comes in P03)
+    - [x] Publishes `transcript_chunk` event to the orchestrator
+  - [x] Implement `POST /api/tools/get_lesson_context` — returns current lesson objectives (mock data for now)
+  - [x] Implement `POST /api/tools/end_lesson` — triggers lesson end flow
+  - [x] Test: ElevenLabs agent calls our endpoint and receives a response
+- [x] Frontend Voice Call Integration
+  - [x] Implement `components/VoiceCall.tsx` using `@elevenlabs/react` SDK
+    - [x] Connect to ElevenLabs Conversational AI agent
+    - [x] Handle microphone permissions
+    - [x] Show call status (connecting, active, ended)
+    - [x] Display basic waveform visualization during call
+  - [x] Create a test page: click "Start Call" → talk to Coach Alex → click "End Call"
+  - [x] Verify: user speaks → AI responds naturally → tool calls hit our backend
+- [x] Voice Cloning Pipeline (for "Future You" feature)
+  - [x] During the voice call, capture raw audio from the user's microphone using Web Audio API
+  - [x] After diagnostic call ends, send the best 30s audio clip to backend
+  - [x] Backend: `POST /api/voice/clone` — calls ElevenLabs Instant Voice Clone API to create a voice profile
+  - [x] Store the cloned voice ID in the user's profile in the database
+  - [x] Test: complete a diagnostic call → cloned voice ID exists in database
+- [x] WebSocket Setup
+  - [x] Implement WebSocket endpoint `ws://localhost:8000/ws/lesson/{lesson_id}` in `main.py`
+  - [x] Orchestrator publishes events → WebSocket broadcasts to connected frontend clients
+  - [x] Frontend: `lib/websocket.ts` — connect to WebSocket, parse incoming events
+  - [x] Test: trigger a mock event in backend → frontend receives it via WebSocket
 
 **Done when:** User can have a full voice conversation with Coach Alex from the frontend, tool calls arrive at backend, WebSocket streams events to frontend, voice clone pipeline captures audio and creates a cloned voice.
 
