@@ -243,43 +243,43 @@
 
 **Goal:** The full lesson experience — voice call + live analysis + transcript + timer — all working together on one screen.
 
-- [ ] Lesson Session Management (Backend)
-  - [ ] Implement `POST /api/lessons/start` — creates a lesson session, returns lesson_id
-    - [ ] Accepts: user_id, lesson config (title, objectives, character, target vocabulary/idioms)
-    - [ ] Creates lesson record in database with status "active"
-    - [ ] Initializes the orchestrator session for this lesson
-    - [ ] Returns: lesson_id, ElevenLabs agent config (system prompt customized for this lesson)
-  - [ ] Implement `POST /api/lessons/{id}/end` — ends the lesson session
-    - [ ] Publishes `lesson_end` event to orchestrator
-    - [ ] Updates lesson status to "completed" in database
-    - [ ] Returns: lesson_id for report card redirect
-  - [ ] Implement `GET /api/lessons/{id}` — returns lesson data + analysis history
-- [ ] Dynamic ElevenLabs Agent Prompts
-  - [ ] Create `backend/elevenlabs_config/personas.py` with character definitions:
-    - [ ] Coach Alex: warm, diagnostic, open-ended (for diagnostic calls)
-    - [ ] Sarah Chen (HR): professional, structured, behavioral questions (for interview lessons)
-    - [ ] David Park (VP): authoritative, challenging, high expectations (for advanced/boss battles)
-  - [ ] System prompt template that injects: character persona + lesson objectives + target vocabulary + user's weak areas from Speech DNA
-  - [ ] "Pressure Mode" system prompt variant: adversarial, interrupts, challenges, rapid-fire
-- [ ] Frontend: Full Lesson Page (`app/lesson/[id]/page.tsx`)
-  - [ ] Layout: two-column — left (voice call + transcript), right (live analysis sidebar)
-  - [ ] Top bar: lesson title, character info (name + role + avatar), timer, "Pressure Mode" toggle
-  - [ ] Integrate `VoiceCall.tsx` component (left column)
-  - [ ] Integrate `LiveAnalysisSidebar.tsx` component (right column)
-  - [ ] Implement `components/TranscriptView.tsx`:
-    - [ ] Scrolling transcript that updates as user/AI speaks
-    - [ ] Highlight grammar errors inline (red underline)
-    - [ ] Highlight filler words inline (yellow)
-    - [ ] Show "better word" suggestions as inline tooltips
-  - [ ] Implement `components/WaveformVisualizer.tsx`:
-    - [ ] Web Audio API — visualize audio waveform during call
-    - [ ] Show for both user's mic and AI's voice
-  - [ ] Call controls: "End Call" button, "Pause" button, lesson timer
-  - [ ] Lesson start flow: page loads → fetch lesson config from backend → start ElevenLabs call with custom system prompt → WebSocket connects
-  - [ ] Lesson end flow: click "End Call" → call `POST /api/lessons/{id}/end` → redirect to report card page
-- [ ] End-to-End Lesson Test
-  - [ ] Start a lesson → have a 3-min voice conversation → see live analysis in sidebar → see transcript with highlights → end call → lesson record saved in database
-  - [ ] Test "Pressure Mode" toggle: switch on → AI character becomes adversarial
+- [x] Lesson Session Management (Backend)
+  - [x] Implement `POST /api/lessons/start` — creates a lesson session, returns lesson_id
+    - [x] Accepts: user_id, lesson config (title, objectives, character, target vocabulary/idioms)
+    - [x] Creates lesson record in database with status "active"
+    - [x] Initializes the orchestrator session for this lesson
+    - [x] Returns: lesson_id, ElevenLabs agent config (system prompt customized for this lesson)
+  - [x] Implement `POST /api/lessons/{id}/end` — ends the lesson session
+    - [x] Publishes `lesson_end` event to orchestrator
+    - [x] Updates lesson status to "completed" in database
+    - [x] Returns: lesson_id for report card redirect
+  - [x] Implement `GET /api/lessons/{id}` — returns lesson data + analysis history
+- [x] Dynamic ElevenLabs Agent Prompts
+  - [x] Create `backend/elevenlabs_config/personas.py` with character definitions:
+    - [x] Coach Alex: warm, diagnostic, open-ended (for diagnostic calls)
+    - [x] Sarah Chen (HR): professional, structured, behavioral questions (for interview lessons)
+    - [x] David Park (VP): authoritative, challenging, high expectations (for advanced/boss battles)
+  - [x] System prompt template that injects: character persona + lesson objectives + target vocabulary + user's weak areas from Speech DNA
+  - [x] "Pressure Mode" system prompt variant: adversarial, interrupts, challenges, rapid-fire
+- [x] Frontend: Full Lesson Page (`app/lesson/[id]/page.tsx`)
+  - [x] Layout: two-column — left (voice call + transcript), right (live analysis sidebar)
+  - [x] Top bar: lesson title, character info (name + role + avatar), timer, "Pressure Mode" toggle
+  - [x] Integrate `VoiceCall.tsx` component (left column)
+  - [x] Integrate `LiveAnalysisSidebar.tsx` component (right column)
+  - [x] Implement `components/TranscriptView.tsx`:
+    - [x] Scrolling transcript that updates as user/AI speaks
+    - [x] Highlight grammar errors inline (red underline)
+    - [x] Highlight filler words inline (yellow)
+    - [x] Show "better word" suggestions as inline tooltips
+  - [x] Implement `components/WaveformVisualizer.tsx`:
+    - [x] Web Audio API — visualize audio waveform during call
+    - [x] Show for both user's mic and AI's voice
+  - [x] Call controls: "End Call" button, "Pause" button, lesson timer
+  - [x] Lesson start flow: page loads → fetch lesson config from backend → start ElevenLabs call with custom system prompt → WebSocket connects
+  - [x] Lesson end flow: click "End Call" → call `POST /api/lessons/{id}/end` → redirect to report card page
+- [x] End-to-End Lesson Test
+  - [x] Start a lesson → have a 3-min voice conversation → see live analysis in sidebar → see transcript with highlights → end call → lesson record saved in database
+  - [x] Test "Pressure Mode" toggle: switch on → AI character becomes adversarial
 
 **Done when:** The full lesson screen works — user has a voice conversation, sees live stats, scrolling transcript with error highlights, and can end the call. Pressure Mode toggle changes AI behavior.
 

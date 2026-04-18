@@ -10,18 +10,25 @@ export async function startLesson(
   userId: string,
   config: Record<string, unknown>,
 ) {
-  // TODO: implement in P04
-  return { lesson_id: "" };
+  const res = await fetch(`${BACKEND_URL}/api/lessons/start`, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ user_id: userId, ...config }),
+  });
+  return res.json();
 }
 
 export async function endLesson(lessonId: string) {
-  // TODO: implement in P04
-  return { lesson_id: lessonId };
+  const res = await fetch(`${BACKEND_URL}/api/lessons/${lessonId}/end`, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+  });
+  return res.json();
 }
 
 export async function getLesson(lessonId: string) {
-  // TODO: implement in P04
-  return {};
+  const res = await fetch(`${BACKEND_URL}/api/lessons/${lessonId}`);
+  return res.json();
 }
 
 export async function getReport(lessonId: string) {

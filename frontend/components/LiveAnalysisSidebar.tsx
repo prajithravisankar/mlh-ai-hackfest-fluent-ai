@@ -19,11 +19,7 @@ function ScoreBar({
   displayValue?: string;
 }) {
   const color =
-    value > 75
-      ? "bg-emerald-500"
-      : value > 50
-        ? "bg-yellow-500"
-        : "bg-red-500";
+    value > 75 ? "bg-emerald-500" : value > 50 ? "bg-yellow-500" : "bg-red-500";
   const textColor =
     value > 75
       ? "text-emerald-400"
@@ -137,7 +133,10 @@ export default function LiveAnalysisSidebar({
               value={Math.max(0, 100 - analysis.filler_count * 10)}
               displayValue={`${analysis.filler_count} found`}
             />
-            <ScoreBar label="Complexity" value={analysis.sentence_complexity_score} />
+            <ScoreBar
+              label="Complexity"
+              value={analysis.sentence_complexity_score}
+            />
             <ScoreBar label="Idioms" value={analysis.idiom_score} />
             <ScoreBar
               label="Pace"
@@ -192,9 +191,7 @@ export default function LiveAnalysisSidebar({
                     key={`opp-${i}`}
                     className="rounded-lg border border-blue-900/50 bg-blue-950/30 p-2 text-xs"
                   >
-                    <p className="text-zinc-400">
-                      &ldquo;{mo.context}&rdquo;
-                    </p>
+                    <p className="text-zinc-400">&ldquo;{mo.context}&rdquo;</p>
                     <p className="mt-1 text-blue-300">
                       Try: &ldquo;{mo.suggestion}&rdquo;
                     </p>

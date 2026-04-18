@@ -122,9 +122,30 @@ async def analyze_speech(body: AnalyzeSpeechRequest, request: Request):
 @router.post("/tools/get_lesson_context")
 async def get_lesson_context(body: GetLessonContextRequest):
     """Called by ElevenLabs agent to get current lesson objectives."""
-    # Mock lesson context (real DB lookup in P04)
+    lesson_id = body.lesson_id or "diagnostic"
+
+    # Try fetching real lesson data from DB
+    try:
+        async with get_db() as db:
+            rows = await db.execute_fetchall(
+                "SELECT * FROM lessons WHERE id = ?", (lesson_id,)
+            )
+            if rows:
+                lesson = rows[0]
+                return {
+                    "lesson_id": lesson_id,
+                    "title": lesson["title"],
+                    "objectives": json.loads(lesson["objectives"] or "[]"),
+                    "character": lesson["character"],
+                    "target_vocabulary": [],
+                    "target_idioms": [],
+                }
+    except Exception as e:
+        logger.error(f"Failed to fetch lesson context: {e}")
+
+    # Fallback for diagnostic or unknown lessons
     return {
-        "lesson_id": body.lesson_id or "diagnostic",
+        "lesson_id": lesson_id,
         "title": "Diagnostic Conversation",
         "objectives": [
             "Assess baseline fluency",
@@ -159,12 +180,11 @@ async def end_lesson_tool(body: EndLessonRequest, request: Request):
             async with get_db() as db:
                 await db.execute(
                     """INSERT INTO speech_dna_snapshots
-                       (user_id, lesson_id, grammar, vocabulary, filler_words,
+                       (user_id, grammar, vocabulary, filler_words,
                         sentence_complexity, idiom_usage, speaking_pace, coherence, confidence)
-                       VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)""",
+                       VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)""",
                     (
                         "user_1",  # TODO: real user from auth
-                        lesson_id,
                         dna.get("grammar", 0),
                         dna.get("vocabulary", 0),
                         dna.get("filler_words", 0),
