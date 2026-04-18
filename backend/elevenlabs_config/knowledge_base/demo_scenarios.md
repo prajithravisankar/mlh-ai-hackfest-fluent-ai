@@ -17,6 +17,7 @@
 > I want to join your company because, um, I think it's a good company. It has many interesting project and I could learn more stuffs there."
 
 **What FluentAI should catch:**
+
 - Grammar: "since 3 years" → "for 3 years", "make" → "makes", "found" → "find", "said me" → "told me", "many interesting project" → "projects", "stuffs" → "things/skills"
 - Fillers: um (×5), like (×3), you know (×2), basically (×1)
 - Vocabulary: "good" (overused), "pretty good" (vague), "stuffs" (incorrect)
@@ -38,6 +39,7 @@
 > I also like reading but I didn't read a book since a long time. I think the last book I readed was, um, maybe two months ago. It was about, like, psychology and how people make decisions. It was very interesting book."
 
 **What FluentAI should catch:**
+
 - Grammar: "watching" → "watch", "should to exercise" → "should exercise", "type" → "types", "too much sticky" → "too sticky", "don't knew" → "didn't know", "it turn out" → "it turned out", "didn't read since" → "haven't read for", "readed" → "read", "very interesting book" → "a very interesting book"
 - Fillers: um (×3), like (×2), you know (×1)
 - Vocabulary: "okay" (weak), could use more descriptive words
@@ -61,6 +63,7 @@
 > In terms of the future, we are planning to, um, add more features and expand to other markets. I believe our platform can, you know, be very successful because the market is, like, very big and there is a lot of demand for this kind of solution."
 
 **What FluentAI should catch:**
+
 - Grammar: "builded" → "built", "help" → "helps", "business" → "businesses", "cause" → "causes", "problem" → "problems", "who is using" → "who are using", "it save" → "it saves"
 - Fillers: um (×4), like (×3), you know (×2), basically (×2), so (×1)
 - Vocabulary: "good" (vague), "very" (overused ×4), "big" (weak)

@@ -41,96 +41,96 @@
 
 **Goal:** Both frontend and backend repos running locally, database schema created, project structure matches planning.md, multi-agent skeleton scaffolded.
 
-- [ ] Frontend — Next.js
-  - [ ] Run `npx create-next-app@latest frontend --typescript --tailwind --app --src-dir=false`
-  - [ ] Verify `cd frontend && npm run dev` starts on localhost:3000
-  - [ ] Install frontend dependencies: `npm install @11labs/react recharts framer-motion`
-  - [ ] Create page route stubs (empty pages, just a title):
-    - [ ] `app/page.tsx` — Landing / topic selection
-    - [ ] `app/diagnostic/page.tsx` — Diagnostic call
-    - [ ] `app/roadmap/page.tsx` — Roadmap view
-    - [ ] `app/lesson/[id]/page.tsx` — Live lesson
-    - [ ] `app/report/[id]/page.tsx` — Report card
-    - [ ] `app/profile/page.tsx` — Speech DNA + achievements
-    - [ ] `app/prep/[id]/page.tsx` — Pre-lesson study material
-    - [ ] `app/replay/[id]/page.tsx` — Annotated call replay (stretch)
-  - [ ] Create component file stubs (empty exports):
-    - [ ] `components/VoiceCall.tsx`
-    - [ ] `components/LiveAnalysisSidebar.tsx`
-    - [ ] `components/TranscriptView.tsx`
-    - [ ] `components/ReportCard.tsx`
-    - [ ] `components/SpeechDNARadar.tsx`
-    - [ ] `components/RoadmapView.tsx`
-    - [ ] `components/AchievementPopup.tsx`
-    - [ ] `components/LevelUpAnimation.tsx`
-    - [ ] `components/PrepMaterial.tsx`
-    - [ ] `components/GhostCorrection.tsx`
-    - [ ] `components/WaveformVisualizer.tsx`
-    - [ ] `components/ProgressBar.tsx`
-  - [ ] Create lib file stubs:
-    - [ ] `lib/api.ts` — Backend API client (empty functions)
-    - [ ] `lib/websocket.ts` — WebSocket helpers
-    - [ ] `lib/elevenlabs.ts` — ElevenLabs config
-    - [ ] `lib/types.ts` — TypeScript type definitions
-  - [ ] Set up dark theme base in `globals.css`
-  - [ ] Create `app/layout.tsx` — root layout with site-wide nav bar (logo, nav links to roadmap/profile, XP bar placeholder)
-- [ ] Backend — Python FastAPI
-  - [ ] Create `backend/` directory
-  - [ ] Create `backend/requirements.txt` with: `fastapi`, `uvicorn[standard]`, `websockets`, `aiosqlite`, `google-genai`, `elevenlabs`, `python-dotenv`, `pydantic`
-  - [ ] Run `pip install -r backend/requirements.txt` (or use venv)
-  - [ ] Create `backend/main.py` — FastAPI app with CORS middleware + health check `GET /api/health`
-  - [ ] Verify `uvicorn main:app --reload` starts on localhost:8000
-  - [ ] Create router stubs:
-    - [ ] `backend/routers/__init__.py`
-    - [ ] `backend/routers/lessons.py` — Lesson CRUD routes
-    - [ ] `backend/routers/analysis.py` — ElevenLabs tool call endpoint
-    - [ ] `backend/routers/roadmap.py` — Roadmap routes
-    - [ ] `backend/routers/profile.py` — Speech DNA + XP routes
-  - [ ] Create service stubs:
-    - [ ] `backend/services/__init__.py`
-    - [ ] `backend/services/gemini_analyzer.py`
-    - [ ] `backend/services/roadmap_generator.py`
-    - [ ] `backend/services/report_generator.py`
-    - [ ] `backend/services/speech_dna.py`
-    - [ ] `backend/services/gamification.py`
-    - [ ] `backend/services/prep_generator.py`
-  - [ ] Create model stubs:
-    - [ ] `backend/models/__init__.py`
-    - [ ] `backend/models/user.py`
-    - [ ] `backend/models/lesson.py`
-    - [ ] `backend/models/speech_dna.py`
-    - [ ] `backend/models/roadmap.py`
-  - [ ] Create ElevenLabs config:
-    - [ ] `backend/elevenlabs_config/personas.py` — Character definitions
-    - [ ] `backend/elevenlabs_config/knowledge_base/` — directory for content files
-  - [ ] Copy knowledge base files into `backend/elevenlabs_config/knowledge_base/`
-- [ ] Multi-Agent Skeleton
-  - [ ] Create `backend/agents/__init__.py`
-  - [ ] Create `backend/agents/orchestrator.py` — `AgentOrchestrator` class with in-memory event bus
-  - [ ] Create `backend/agents/base_agent.py` — `BaseAgent` abstract class (subscribe, handle, publish)
-  - [ ] Create agent stub files (empty classes extending BaseAgent):
-    - [ ] `backend/agents/analyzer_agent.py` — subscribes to `transcript_chunk`
-    - [ ] `backend/agents/coach_agent.py` — subscribes to `analysis_result`
-    - [ ] `backend/agents/dna_agent.py` — subscribes to `analysis_result`
-    - [ ] `backend/agents/gamification_agent.py` — subscribes to `analysis_result`, `lesson_end`
-    - [ ] `backend/agents/report_agent.py` — subscribes to `lesson_end`
-  - [ ] Wire orchestrator into `main.py` — register all agents on app startup
-- [ ] Database
-  - [ ] Create `backend/database.py` — async SQLite setup with `aiosqlite`
-  - [ ] Define tables: `users`, `lessons`, `speech_dna_snapshots`, `roadmaps`, `achievements`, `lesson_analyses`
-  - [ ] Auto-create tables on first startup
-- [ ] Environment & Config
-  - [ ] Create `backend/.env` with `ELEVENLABS_API_KEY`, `GEMINI_API_KEY`
-  - [ ] Create `backend/.env.example` with placeholder values
-  - [ ] Create `frontend/.env.local` with `NEXT_PUBLIC_BACKEND_URL=http://localhost:8000`, `NEXT_PUBLIC_ELEVENLABS_AGENT_ID`
-  - [ ] Create `frontend/.env.example` with placeholder values
-  - [ ] Configure `next.config.js` — API proxy rewrites from `/api` to backend during development
-  - [ ] Create `.gitignore` at project root (node_modules, **pycache**, .env, .env.local, venv, .next, _.pyc, .DS_Store, _.db)
-- [ ] Verify Everything Runs
-  - [ ] Frontend starts without errors on localhost:3000
-  - [ ] Backend starts without errors on localhost:8000
-  - [ ] `GET /api/health` returns `{"status": "ok"}`
-  - [ ] Git commit: "Initial project scaffold with multi-agent skeleton"
+- [x] Frontend — Next.js
+  - [x] Run `npx create-next-app@latest frontend --typescript --tailwind --app --src-dir=false`
+  - [x] Verify `cd frontend && npm run dev` starts on localhost:3000
+  - [x] Install frontend dependencies: `npm install @11labs/react recharts framer-motion`
+  - [x] Create page route stubs (empty pages, just a title):
+    - [x] `app/page.tsx` — Landing / topic selection
+    - [x] `app/diagnostic/page.tsx` — Diagnostic call
+    - [x] `app/roadmap/page.tsx` — Roadmap view
+    - [x] `app/lesson/[id]/page.tsx` — Live lesson
+    - [x] `app/report/[id]/page.tsx` — Report card
+    - [x] `app/profile/page.tsx` — Speech DNA + achievements
+    - [x] `app/prep/[id]/page.tsx` — Pre-lesson study material
+    - [x] `app/replay/[id]/page.tsx` — Annotated call replay (stretch)
+  - [x] Create component file stubs (empty exports):
+    - [x] `components/VoiceCall.tsx`
+    - [x] `components/LiveAnalysisSidebar.tsx`
+    - [x] `components/TranscriptView.tsx`
+    - [x] `components/ReportCard.tsx`
+    - [x] `components/SpeechDNARadar.tsx`
+    - [x] `components/RoadmapView.tsx`
+    - [x] `components/AchievementPopup.tsx`
+    - [x] `components/LevelUpAnimation.tsx`
+    - [x] `components/PrepMaterial.tsx`
+    - [x] `components/GhostCorrection.tsx`
+    - [x] `components/WaveformVisualizer.tsx`
+    - [x] `components/ProgressBar.tsx`
+  - [x] Create lib file stubs:
+    - [x] `lib/api.ts` — Backend API client (empty functions)
+    - [x] `lib/websocket.ts` — WebSocket helpers
+    - [x] `lib/elevenlabs.ts` — ElevenLabs config
+    - [x] `lib/types.ts` — TypeScript type definitions
+  - [x] Set up dark theme base in `globals.css`
+  - [x] Create `app/layout.tsx` — root layout with site-wide nav bar (logo, nav links to roadmap/profile, XP bar placeholder)
+- [x] Backend — Python FastAPI
+  - [x] Create `backend/` directory
+  - [x] Create `backend/requirements.txt` with: `fastapi`, `uvicorn[standard]`, `websockets`, `aiosqlite`, `google-genai`, `elevenlabs`, `python-dotenv`, `pydantic`
+  - [x] Run `pip install -r backend/requirements.txt` (or use venv)
+  - [x] Create `backend/main.py` — FastAPI app with CORS middleware + health check `GET /api/health`
+  - [x] Verify `uvicorn main:app --reload` starts on localhost:8000
+  - [x] Create router stubs:
+    - [x] `backend/routers/__init__.py`
+    - [x] `backend/routers/lessons.py` — Lesson CRUD routes
+    - [x] `backend/routers/analysis.py` — ElevenLabs tool call endpoint
+    - [x] `backend/routers/roadmap.py` — Roadmap routes
+    - [x] `backend/routers/profile.py` — Speech DNA + XP routes
+  - [x] Create service stubs:
+    - [x] `backend/services/__init__.py`
+    - [x] `backend/services/gemini_analyzer.py`
+    - [x] `backend/services/roadmap_generator.py`
+    - [x] `backend/services/report_generator.py`
+    - [x] `backend/services/speech_dna.py`
+    - [x] `backend/services/gamification.py`
+    - [x] `backend/services/prep_generator.py`
+  - [x] Create model stubs:
+    - [x] `backend/models/__init__.py`
+    - [x] `backend/models/user.py`
+    - [x] `backend/models/lesson.py`
+    - [x] `backend/models/speech_dna.py`
+    - [x] `backend/models/roadmap.py`
+  - [x] Create ElevenLabs config:
+    - [x] `backend/elevenlabs_config/personas.py` — Character definitions
+    - [x] `backend/elevenlabs_config/knowledge_base/` — directory for content files
+  - [x] Copy knowledge base files into `backend/elevenlabs_config/knowledge_base/`
+- [x] Multi-Agent Skeleton
+  - [x] Create `backend/agents/__init__.py`
+  - [x] Create `backend/agents/orchestrator.py` — `AgentOrchestrator` class with in-memory event bus
+  - [x] Create `backend/agents/base_agent.py` — `BaseAgent` abstract class (subscribe, handle, publish)
+  - [x] Create agent stub files (empty classes extending BaseAgent):
+    - [x] `backend/agents/analyzer_agent.py` — subscribes to `transcript_chunk`
+    - [x] `backend/agents/coach_agent.py` — subscribes to `analysis_result`
+    - [x] `backend/agents/dna_agent.py` — subscribes to `analysis_result`
+    - [x] `backend/agents/gamification_agent.py` — subscribes to `analysis_result`, `lesson_end`
+    - [x] `backend/agents/report_agent.py` — subscribes to `lesson_end`
+  - [x] Wire orchestrator into `main.py` — register all agents on app startup
+- [x] Database
+  - [x] Create `backend/database.py` — async SQLite setup with `aiosqlite`
+  - [x] Define tables: `users`, `lessons`, `speech_dna_snapshots`, `roadmaps`, `achievements`, `lesson_analyses`
+  - [x] Auto-create tables on first startup
+- [x] Environment & Config
+  - [x] Create `backend/.env` with `ELEVENLABS_API_KEY`, `GEMINI_API_KEY`
+  - [x] Create `backend/.env.example` with placeholder values
+  - [x] Create `frontend/.env.local` with `NEXT_PUBLIC_BACKEND_URL=http://localhost:8000`, `NEXT_PUBLIC_ELEVENLABS_AGENT_ID`
+  - [x] Create `frontend/.env.example` with placeholder values
+  - [x] Configure `next.config.js` — API proxy rewrites from `/api` to backend during development
+  - [x] Create `.gitignore` at project root (node*modules, **pycache**, .env, .env.local, venv, .next, *.pyc, .DS*Store, *.db)
+- [x] Verify Everything Runs
+  - [x] Frontend starts without errors on localhost:3000
+  - [x] Backend starts without errors on localhost:8000
+  - [x] `GET /api/health` returns `{"status": "ok"}`
+  - [x] Git commit: "Initial project scaffold with multi-agent skeleton"
 
 **Done when:** Both servers start, health check returns OK, all file stubs exist matching the project structure in planning.md, agent orchestrator skeleton is wired up.
 
