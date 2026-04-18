@@ -8,30 +8,30 @@
 
 **Goal:** All accounts, API keys, content files, and local tooling ready BEFORE the clock starts.
 
-- [ ] Accounts & API Keys
-  - [ ] Create / verify ElevenLabs account with Conversational AI access
-  - [ ] Generate ElevenLabs API key and store in password manager
-  - [ ] Create / verify Google AI Studio account with Gemini 2.5 Flash access
-  - [ ] Generate Gemini API key and store in password manager
-  - [ ] Verify ElevenLabs API key with a hello-world TTS call
-  - [ ] Verify Gemini API key with a hello-world prompt call
-- [ ] ElevenLabs Platform Pre-Config
-  - [ ] Create Conversational AI agent on the ElevenLabs dashboard ("FluentAI Coach")
-  - [ ] Configure first persona: Coach Alex (warm, diagnostic voice — "Kore" or similar)
-  - [ ] Test a basic voice conversation through the ElevenLabs playground to confirm it works
-- [ ] Knowledge Base Content Files (write locally, upload in P01)
-  - [ ] Write `grammar_rules.md` — Top 50 English grammar rules with examples
-  - [ ] Write `idioms_database.md` — 200 common English idioms organized by topic
-  - [ ] Write `evaluation_rubrics.md` — Scoring criteria for each Speech DNA dimension
-  - [ ] Write `coaching_strategies.md` — How to adapt difficulty, encourage, push
-- [ ] Local Tooling
-  - [ ] Node.js 18+ installed and working
-  - [ ] Python 3.11+ installed and working
-  - [ ] Confirm `npx create-next-app` works
-  - [ ] Confirm `pip install fastapi uvicorn` works
-- [ ] Demo Prep
-  - [ ] Write 3 demo talking-point scenarios (Job Interview, Casual Conversation, Presentation)
-  - [ ] Practice speaking responses with intentional grammar mistakes, filler words, and vocabulary gaps (for demo recording later)
+- [x] Accounts & API Keys
+  - [x] Create / verify ElevenLabs account with Conversational AI access
+  - [x] Generate ElevenLabs API key and store in password manager
+  - [x] Create / verify Google AI Studio account with Gemini 2.5 Flash access
+  - [x] Generate Gemini API key and store in password manager
+  - [x] Verify ElevenLabs API key with a hello-world TTS call
+  - [x] Verify Gemini API key with a hello-world prompt call
+- [x] ElevenLabs Platform Pre-Config
+  - [x] Create Conversational AI agent on the ElevenLabs dashboard ("FluentAI Coach")
+  - [x] Configure first persona: Coach Alex (warm, diagnostic voice — "Kore" or similar)
+  - [x] Test a basic voice conversation through the ElevenLabs playground to confirm it works
+- [x] Knowledge Base Content Files (write locally, upload in P01)
+  - [x] Write `grammar_rules.md` — Top 50 English grammar rules with examples
+  - [x] Write `idioms_database.md` — 200 common English idioms organized by topic
+  - [x] Write `evaluation_rubrics.md` — Scoring criteria for each Speech DNA dimension
+  - [x] Write `coaching_strategies.md` — How to adapt difficulty, encourage, push
+- [x] Local Tooling
+  - [x] Node.js 18+ installed and working
+  - [x] Python 3.11+ installed and working
+  - [x] Confirm `npx create-next-app` works
+  - [x] Confirm `pip install fastapi uvicorn` works
+- [x] Demo Prep
+  - [x] Write 3 demo talking-point scenarios (Job Interview, Casual Conversation, Presentation)
+  - [x] Practice speaking responses with intentional grammar mistakes, filler words, and vocabulary gaps (for demo recording later)
 
 **Done when:** Both API keys return valid responses, ElevenLabs agent exists in dashboard, all 4 knowledge base files written, local tooling verified.
 
