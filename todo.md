@@ -125,7 +125,7 @@
   - [ ] Create `frontend/.env.local` with `NEXT_PUBLIC_BACKEND_URL=http://localhost:8000`, `NEXT_PUBLIC_ELEVENLABS_AGENT_ID`
   - [ ] Create `frontend/.env.example` with placeholder values
   - [ ] Configure `next.config.js` — API proxy rewrites from `/api` to backend during development
-  - [ ] Create `.gitignore` at project root (node_modules, __pycache__, .env, .env.local, venv, .next, *.pyc, .DS_Store, *.db)
+  - [ ] Create `.gitignore` at project root (node_modules, **pycache**, .env, .env.local, venv, .next, _.pyc, .DS_Store, _.db)
 - [ ] Verify Everything Runs
   - [ ] Frontend starts without errors on localhost:3000
   - [ ] Backend starts without errors on localhost:8000
@@ -552,6 +552,9 @@
 - [ ] Architecture Diagram
   - [ ] Create multi-agent architecture diagram image (use draw.io, Excalidraw, or Mermaid → PNG)
   - [ ] Save as `demo/architecture.png` — needed for demo video tech flex section and README
+- [ ] Architecture Diagram
+  - [ ] Create multi-agent architecture diagram image (use draw.io, Excalidraw, or Mermaid → PNG)
+  - [ ] Save as `demo/architecture.png` — needed for demo video tech flex section and README
 
 **Done when:** Every page looks polished, animations are smooth, dark theme is consistent, and there are no visual glitches during the demo flow.
 
@@ -634,6 +637,32 @@
   - [ ] Prepare intentional mistakes to speak during the demo (to showcase the analysis)
 
 **Done when:** The full flow works 3 times in a row without errors. Demo scenario is rehearsed.
+2.5 — Deployment (Hour 17.5–18)
+
+**Goal:** App is live on the internet for the demo video and judges to access.
+
+- [ ] Frontend Deployment (Vercel)
+  - [ ] Push frontend to GitHub (if not already)
+  - [ ] Connect repo to Vercel and import the `frontend/` directory
+  - [ ] Set environment variables in Vercel dashboard: `NEXT_PUBLIC_BACKEND_URL`, `NEXT_PUBLIC_ELEVENLABS_AGENT_ID`
+  - [ ] Deploy and verify landing page loads on the Vercel URL
+  - [ ] Test full flow on deployed frontend
+- [ ] Backend Deployment (Railway or Render)
+  - [ ] Create a new project on Railway (or Render)
+  - [ ] Connect the `backend/` directory
+  - [ ] Set environment variables: `ELEVENLABS_API_KEY`, `GEMINI_API_KEY`, `CORS_ORIGINS` (Vercel URL)
+  - [ ] Deploy and verify `GET /api/health` returns OK on the public URL
+  - [ ] Update Vercel frontend env var `NEXT_PUBLIC_BACKEND_URL` to point to deployed backend
+- [ ] End-to-End on Deployed App
+  - [ ] Full demo flow works on live URLs (not localhost)
+  - [ ] WebSocket connection works through deployed backend
+  - [ ] No CORS errors in browser console
+
+**Done when:** Both frontend and backend are live, connected, and the full demo flow works on public URLs.
+
+---
+
+## P1
 
 ---
 
