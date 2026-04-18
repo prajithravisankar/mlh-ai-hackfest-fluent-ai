@@ -4,35 +4,35 @@ import { useState, useCallback } from "react";
 import VoiceCall from "../../components/VoiceCall";
 
 const AGENT_ID = process.env.NEXT_PUBLIC_ELEVENLABS_AGENT_ID ?? "";
-const BACKEND_URL = process.env.NEXT_PUBLIC_BACKEND_URL ?? "http://localhost:8000";
+const BACKEND_URL =
+  process.env.NEXT_PUBLIC_BACKEND_URL ?? "http://localhost:8000";
 
 export default function DiagnosticPage() {
   const [conversationId, setConversationId] = useState<string | null>(null);
-  const [callState, setCallState] = useState<"idle" | "active" | "ended">("idle");
+  const [callState, setCallState] = useState<"idle" | "active" | "ended">(
+    "idle",
+  );
   const [error, setError] = useState<string | null>(null);
 
-  const handleAudioCaptured = useCallback(
-    async (blob: Blob) => {
-      try {
-        const form = new FormData();
-        form.append("audio", blob, "diagnostic-recording.webm");
-        form.append("user_id", "default-user");
-        form.append("name", "Diagnostic Voice Sample");
+  const handleAudioCaptured = useCallback(async (blob: Blob) => {
+    try {
+      const form = new FormData();
+      form.append("audio", blob, "diagnostic-recording.webm");
+      form.append("user_id", "default-user");
+      form.append("name", "Diagnostic Voice Sample");
 
-        const res = await fetch(`${BACKEND_URL}/api/voice/clone`, {
-          method: "POST",
-          body: form,
-        });
+      const res = await fetch(`${BACKEND_URL}/api/voice/clone`, {
+        method: "POST",
+        body: form,
+      });
 
-        if (!res.ok) {
-          console.warn("Voice clone upload failed:", res.status);
-        }
-      } catch {
-        console.warn("Could not upload audio for voice cloning");
+      if (!res.ok) {
+        console.warn("Voice clone upload failed:", res.status);
       }
-    },
-    []
-  );
+    } catch {
+      console.warn("Could not upload audio for voice cloning");
+    }
+  }, []);
 
   return (
     <main className="flex flex-1 flex-col items-center justify-center gap-8 px-4">

@@ -186,54 +186,54 @@
 
 **Goal:** Real-time speech analysis via Gemini, delivered through the multi-agent architecture, streamed live to the frontend sidebar.
 
-- [ ] Gemini Analysis Service
-  - [ ] Implement `backend/services/gemini_analyzer.py`:
-    - [ ] Initialize Gemini 2.5 Flash client
-    - [ ] Write the `ANALYSIS_PROMPT` (from planning.md) — analyzes grammar, vocabulary, fillers, idioms, sentence complexity, confidence, pace, coherence
-    - [ ] Function `analyze_transcript_chunk(transcript, speech_dna, lesson_objective)` → returns structured JSON
-    - [ ] Add JSON schema validation — if Gemini returns malformed JSON, use fallback defaults
-    - [ ] Test: send 3 sample transcript chunks → verify valid JSON analysis for each
-  - [ ] Tune the analysis prompt
-    - [ ] Test with good English sample → expect high scores
-    - [ ] Test with bad English sample (filler words, grammar errors) → expect low scores + specific error list
-    - [ ] Test with intermediate sample → expect nuanced feedback with missed opportunities
-    - [ ] Adjust prompt until scoring feels accurate and consistent
-- [ ] Analyzer Agent (Multi-Agent)
-  - [ ] Implement `backend/agents/analyzer_agent.py`:
-    - [ ] Subscribes to `transcript_chunk` events
-    - [ ] Calls `gemini_analyzer.analyze_transcript_chunk()`
-    - [ ] Publishes `analysis_result` event with structured analysis data
-    - [ ] Maintains a running buffer of all analysis chunks for the current session
-  - [ ] Test: publish a `transcript_chunk` event → receive `analysis_result` event
-- [ ] Coach Agent (Multi-Agent)
-  - [ ] Implement `backend/agents/coach_agent.py`:
-    - [ ] Subscribes to `analysis_result` events
-    - [ ] Logic: if grammar score < 50 → publish `difficulty_adj` event (easier)
-    - [ ] Logic: if grammar score > 85 AND vocabulary > 80 → publish `difficulty_adj` (harder)
-    - [ ] Tracks patterns across multiple chunks (e.g., "user keeps making same grammar error")
-  - [ ] The `difficulty_adj` event is returned to ElevenLabs via the next tool call response, so the AI character adapts
-- [ ] DNA Agent (Multi-Agent)
-  - [ ] Implement `backend/agents/dna_agent.py`:
-    - [ ] Subscribes to `analysis_result` events
-    - [ ] Updates the user's Speech DNA profile in real-time as analysis comes in
-    - [ ] Publishes `dna_update` event with current DNA snapshot
-  - [ ] Test: multiple analysis events → DNA profile reflects running averages
-- [ ] Wire Tool Call → Orchestrator → WebSocket
-  - [ ] Update `POST /api/tools/analyze_speech` to:
-    - [ ] Publish `transcript_chunk` event to orchestrator (instead of direct analysis)
-    - [ ] Wait for `analysis_result` event from the Analyzer Agent
-    - [ ] Return analysis to ElevenLabs (so AI character can adapt)
-    - [ ] Push `analysis_result` to frontend via WebSocket simultaneously
-  - [ ] Test full loop: speak during call → ElevenLabs sends tool call → backend publishes event → agents process → WebSocket sends analysis to frontend
-- [ ] Frontend: Live Analysis Sidebar
-  - [ ] Implement `components/LiveAnalysisSidebar.tsx`:
-    - [ ] Connect to WebSocket for `analysis_result` events
-    - [ ] Display live updating stats: Grammar %, Vocabulary %, Filler count, Pace WPM, Complexity, Coherence, Confidence
-    - [ ] Color coding: green (>75%), yellow (50-75%), red (<50%)
-    - [ ] Show live mistakes list: timestamp + what they said + correction
-    - [ ] Show missed opportunities: better word choices, idioms they could have used
-  - [ ] Smooth animations on stat updates (numbers counting up/down)
-  - [ ] Test: during a live call, sidebar updates every ~15 seconds with real analysis
+- [x] Gemini Analysis Service
+  - [x] Implement `backend/services/gemini_analyzer.py`:
+    - [x] Initialize Gemini 2.5 Flash client
+    - [x] Write the `ANALYSIS_PROMPT` (from planning.md) — analyzes grammar, vocabulary, fillers, idioms, sentence complexity, confidence, pace, coherence
+    - [x] Function `analyze_transcript_chunk(transcript, speech_dna, lesson_objective)` → returns structured JSON
+    - [x] Add JSON schema validation — if Gemini returns malformed JSON, use fallback defaults
+    - [x] Test: send 3 sample transcript chunks → verify valid JSON analysis for each
+  - [x] Tune the analysis prompt
+    - [x] Test with good English sample → expect high scores
+    - [x] Test with bad English sample (filler words, grammar errors) → expect low scores + specific error list
+    - [x] Test with intermediate sample → expect nuanced feedback with missed opportunities
+    - [x] Adjust prompt until scoring feels accurate and consistent
+- [x] Analyzer Agent (Multi-Agent)
+  - [x] Implement `backend/agents/analyzer_agent.py`:
+    - [x] Subscribes to `transcript_chunk` events
+    - [x] Calls `gemini_analyzer.analyze_transcript_chunk()`
+    - [x] Publishes `analysis_result` event with structured analysis data
+    - [x] Maintains a running buffer of all analysis chunks for the current session
+  - [x] Test: publish a `transcript_chunk` event → receive `analysis_result` event
+- [x] Coach Agent (Multi-Agent)
+  - [x] Implement `backend/agents/coach_agent.py`:
+    - [x] Subscribes to `analysis_result` events
+    - [x] Logic: if grammar score < 50 → publish `difficulty_adj` event (easier)
+    - [x] Logic: if grammar score > 85 AND vocabulary > 80 → publish `difficulty_adj` (harder)
+    - [x] Tracks patterns across multiple chunks (e.g., "user keeps making same grammar error")
+  - [x] The `difficulty_adj` event is returned to ElevenLabs via the next tool call response, so the AI character adapts
+- [x] DNA Agent (Multi-Agent)
+  - [x] Implement `backend/agents/dna_agent.py`:
+    - [x] Subscribes to `analysis_result` events
+    - [x] Updates the user's Speech DNA profile in real-time as analysis comes in
+    - [x] Publishes `dna_update` event with current DNA snapshot
+  - [x] Test: multiple analysis events → DNA profile reflects running averages
+- [x] Wire Tool Call → Orchestrator → WebSocket
+  - [x] Update `POST /api/tools/analyze_speech` to:
+    - [x] Publish `transcript_chunk` event to orchestrator (instead of direct analysis)
+    - [x] Wait for `analysis_result` event from the Analyzer Agent
+    - [x] Return analysis to ElevenLabs (so AI character can adapt)
+    - [x] Push `analysis_result` to frontend via WebSocket simultaneously
+  - [x] Test full loop: speak during call → ElevenLabs sends tool call → backend publishes event → agents process → WebSocket sends analysis to frontend
+- [x] Frontend: Live Analysis Sidebar
+  - [x] Implement `components/LiveAnalysisSidebar.tsx`:
+    - [x] Connect to WebSocket for `analysis_result` events
+    - [x] Display live updating stats: Grammar %, Vocabulary %, Filler count, Pace WPM, Complexity, Coherence, Confidence
+    - [x] Color coding: green (>75%), yellow (50-75%), red (<50%)
+    - [x] Show live mistakes list: timestamp + what they said + correction
+    - [x] Show missed opportunities: better word choices, idioms they could have used
+  - [x] Smooth animations on stat updates (numbers counting up/down)
+  - [x] Test: during a live call, sidebar updates every ~15 seconds with real analysis
 
 **Done when:** During a voice call, the sidebar shows live grammar/vocab/filler scores updating in real-time, with specific mistakes and suggestions appearing as the user speaks. All analysis flows through the multi-agent event bus.
 

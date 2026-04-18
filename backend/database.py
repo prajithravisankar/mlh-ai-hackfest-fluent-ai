@@ -1,4 +1,5 @@
 import aiosqlite
+from contextlib import asynccontextmanager
 
 DB_PATH = "fluent_ai.db"
 
@@ -79,18 +80,19 @@ CREATE TABLE IF NOT EXISTS achievements (
 """
 
 
-async def get_db() -> aiosqlite.Connection:
+@asynccontextmanager
+async def get_db():
     db = await aiosqlite.connect(DB_PATH)
     db.row_factory = aiosqlite.Row
     await db.execute("PRAGMA journal_mode=WAL")
     await db.execute("PRAGMA foreign_keys=ON")
-    return db
+    try:
+        yield db
+    finally:
+        await db.close()
 
 
 async def init_db():
-    db = await get_db()
-    try:
+    async with get_db() as db:
         await db.executescript(SCHEMA)
         await db.commit()
-    finally:
-        await db.close()

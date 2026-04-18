@@ -125,7 +125,9 @@ function VoiceCallInner({
         <div
           className={`h-3 w-3 rounded-full ${status === "connected" ? "bg-success animate-pulse" : status === "connecting" ? "bg-warning animate-pulse" : status === "error" ? "bg-danger" : "bg-zinc-600"}`}
         />
-        <span className={`text-sm font-medium ${statusColors[status] || "text-zinc-400"}`}>
+        <span
+          className={`text-sm font-medium ${statusColors[status] || "text-zinc-400"}`}
+        >
           {statusLabels[status] || status}
         </span>
         {status === "connected" && (
@@ -165,9 +167,7 @@ function VoiceCallInner({
       </div>
 
       {/* Lesson context */}
-      {lessonId && (
-        <p className="text-xs text-zinc-600">Lesson: {lessonId}</p>
-      )}
+      {lessonId && <p className="text-xs text-zinc-600">Lesson: {lessonId}</p>}
     </div>
   );
 }

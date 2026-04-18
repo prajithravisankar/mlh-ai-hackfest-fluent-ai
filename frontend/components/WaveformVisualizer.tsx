@@ -6,7 +6,9 @@ interface WaveformVisualizerProps {
   isActive: boolean;
 }
 
-export default function WaveformVisualizer({ isActive }: WaveformVisualizerProps) {
+export default function WaveformVisualizer({
+  isActive,
+}: WaveformVisualizerProps) {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const animRef = useRef<number>(0);
 
@@ -27,9 +29,7 @@ export default function WaveformVisualizer({ isActive }: WaveformVisualizerProps
         // Simulate audio waveform with sine + randomness
         const t = Date.now() / 200;
         const height =
-          Math.abs(Math.sin(t + i * 0.3)) * 30 +
-          Math.random() * 10 +
-          4;
+          Math.abs(Math.sin(t + i * 0.3)) * 30 + Math.random() * 10 + 4;
 
         const x = i * barWidth + barWidth * 0.2;
         const w = barWidth * 0.6;
